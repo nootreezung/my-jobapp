@@ -1,7 +1,7 @@
 const paginate = require('mongoose-paginate-v2')
 const mongoose = require('mongoose')
 
-const connect = mongoose.connect(process.env.MONGODB_URI, { 
+const connect = await mongoose.connect(process.env.MONGODB_URI, { 
   useNewUrlParser: true, useUnifiedTopology: true
 })
 
