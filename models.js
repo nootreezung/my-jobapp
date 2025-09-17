@@ -12,7 +12,7 @@ connect.catch(err => console.log('Database cannot be connected' + err))
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI)
+    await mongoose.connect(process.env.MONGODB_CONNECT_URI)
     console.log('Database connected successfully')
   } catch (err) {
     console.log('Database cannot be connected' + err.message)
