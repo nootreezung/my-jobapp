@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="th-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File Page</title>
+</head>
+<body>
+    <br><br>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="upfile" accept="image/*"><br><br>
+        <input type="checkbox" name="overwrite" value="true">เขียนทับ (ถ้าชื่อซ้ำ)<br><br>
+        <button type="submit">OK</button>
+    </form>
+    <br>
+    <% if (locals.file) { %>
+        <div id="result">
+            <hr>
+            <img src="<%= file %>" style="max-width: 120px; max-height: 120px;"><br>
+            name: <%= fileInfo.name %><br>
+            type: <%= fileInfo.type %><br>
+            size: <%= fileInfo.size %> bytes<br>
+            last modified: <%= fileInfo.lastModified %>
+        </div>
+        <br><br>
+        <a href="/index">หน้าแรก</a>
+    <% } %>
+</body>
+</html>

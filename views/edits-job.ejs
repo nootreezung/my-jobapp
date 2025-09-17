@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edits Job</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 220px;
+            margin-bottom: 15px;
+            margin-right: 5px;
+            text-align: right;
+        }
+
+        button, div#link {
+            margin-left: 160px;
+        }
+    </style>
+</head>
+<body>
+    <h4 style="margin-left: 160px;">แก้ไขข้อมูลรับสมัครงาน</h4>
+    <% if (locals.data) { %>
+    <form method="post" action="/edits-job/<%= data._id %>">
+        <label>ชื่อบริษัท</label>
+        <input type="text" name="companyname" value="<%= data.companyname %>" placeholder="ชื่อบริษัท" required><br><br>
+        <label>สถานที่ตั้งของบริษัท</label>
+        <input type="text" name="location" value="<%= data.location %>" placeholder="สถานที่ตั้งของบริษัท" required><br><br>
+        <label>เว็บไซต์ของบริษัท</label>
+        <input type="text" name="websitecompany" value="<%= data.websitecompany %>" placeholder="เว็บไซต์ของบริษัท" required><br><br>
+        <label>ตำแหน่งที่รับสมัคร</label>
+        <input type="text" name="title" value="<%= data.title %>" placeholder="ตำแหน่งที่รับสมัคร" required><br><br>
+        <label style="float: left;">รายละเอียดของการรับสมัคร</label>
+        <textarea name="description" cols="60" rows="5" placeholder="รายละเอียดของการรับสมัคร"><%= data.description %></textarea><br><br>
+        <label>เรตเงินเดือน (กำหนดเป็นช่วง)</label>
+        <input type="text" name="salary" value="<%= data.salary %>" placeholder="เรตเงินเดือน (กำหนดเป็นช่วง)" required><br><br>
+        <label>เบอร์ติดต่อ</label>
+        <input type="text" name="telephonenumber" value="<%= data.telephonenumber %>" placeholder="เบอร์ติดต่อ" required><br><br>
+        <%
+            // แปลงวันที่แบบ String ที่ได้จาก MongoDB ให้เป็น Timestamp สำหรับแสดงผล
+            // โดยแสดงในรูปแบบของปี/เดือน/วัน
+            let dateString = new Date(Date.parse(data.date_added))
+            let month = dateString.getMonth() + 1
+            month = (month > 10) ? month : '0' + month
+            let date = dateString.getDate()
+            date = (date > 10) ? date : '0' + date
+            let year = dateString.getFullYear()
+            let dateTimeStamp = `${year}-${month}-${date}`
+        %>
+        <label>วันที่ลงประกาศ</label>
+        <input type="date" name="date_added" value="<%= dateTimeStamp %>" placeholder="วันที่ลงประกาศ" required><br><br>
+        <button type="submit">ส่งข้อมูล</button>
+    </form>
+    <% } %>
+    <br><br>
+    <div id="link">
+        <a href="/edits-and-deletes-data-job">ยกเลิก</a> - 
+        <a href="/index">หน้าแรก</a>
+    </div>
+</body>
+</html>

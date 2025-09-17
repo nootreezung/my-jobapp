@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adds Data Job</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 220px;
+            margin-bottom: 15px;
+            margin-right: 5px;
+            text-align: right;
+        }
+
+        a, button, div#result {
+            margin-left: 230px;
+        }
+
+        h4 {
+            margin-left: 230px;
+        }
+    </style>
+</head>
+<body>
+    <div id="sendresult">
+    <% if (locals.sendresult && sendresult == true) { %>
+        <br><br>ข้อมูลถูกบันทึกแล้ว
+    <% } else if (locals.sendresult && sendresult == false) { %>
+        <br><br><span style="color: red;">ข้อมูลไม่ถูกบันทึก เกิดข้อผิดพลาด</span>
+    <% } %>
+    </div>
+    <form method="post" action="/adds-data-job">
+        <h4>เพิ่มข้อมูลรับสมัครงาน</h4>
+        <label>ชื่อบริษัท</label>
+        <input type="text" name="companyname" placeholder="ชื่อบริษัท" required><br><br>
+        <label>สถานที่ตั้งของบริษัท</label>
+        <input type="text" name="location" placeholder="สถานที่ตั้งของบริษัท" required><br><br>
+        <label>เว็บไซต์ของบริษัท</label>
+        <input type="text" name="websitecompany" placeholder="เว็บไซต์ของบริษัท" required><br><br>
+        <label>ตำแหน่งที่รับสมัคร</label>
+        <input type="text" name="title" placeholder="ตำแหน่งที่รับสมัคร" required><br><br>
+        <label>รายละเอียดของการรับสมัคร</label>
+        <textarea name="description" cols="60" rows="5" placeholder="รายละเอียดของการรับสมัคร"></textarea><br><br>
+        <label>เรตเงินเดือน (กำหนดเป็นช่วง)</label>
+        <input type="text" name="salary" placeholder="เรตเงินเดือน (กำหนดเป็นช่วง)" required><br><br>
+        <label>เบอร์ติดต่อ</label>
+        <input type="text" name="telephonenumber" placeholder="เบอร์ติดต่อ" required><br><br>
+        <%
+            let dateTimeNow = new Date()
+            let date = dateTimeNow.getDate()
+            date = (date > 10) ? date : '0' + date
+            let month = dateTimeNow.getMonth() + 1
+            month = (month > 10) ? month : '0' + month
+            let year = dateTimeNow.getFullYear()
+            let inputDate = `${year}-${month}-${date}`
+        %>
+        <label>วันที่ลงประกาศ</label>
+        <input type="date" name="date_added" value="<%= inputDate %>" placeholder="วันที่ลงประกาศ" required><br><br>
+        <button type="submit">ส่งข้อมูล</button>
+    </form>
+    <br><br>
+    <a href="/index">หน้าแรก</a>
+</body>
+</html>

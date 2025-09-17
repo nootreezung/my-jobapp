@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.2",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "formidable": "^3.5.4",
+    "mongoose": "^8.18.0",
+    "mongoose-paginate-v2": "^1.9.1",
+    "nodemon": "^3.1.10"
+  },
+  "name": "jobapplication",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchs Data Job</title>
+    <style>
+        body {
+            margin: 20px;
+            font-family: sans-serif;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 600px; /* ป้องกันตารางแคบเกินไป */
+            border-collapse: collapse;
+            border: solid 2px gray;
+        }
+
+        td, th {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ccc;
+            white-space: nowrap; /* ป้องกันข้อความขึ้นบรรทัดใหม่ */
+        }
+
+        th {
+            background-color: #cde;
+        }
+
+        @media screen and (max-width: 600px) {
+            td, th {
+                padding: 6px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/index">หน้าแรก</a><br><br>
+    <form method="get" action="/searchs-data-job">
+        <% 
+            let searchw = (searchj) ? searchj : '' 
+        %>
+        <input type="text" name="searchjob" placeholder="ค้นหา (งาน) ที่ต้องการ" value="<%= searchw %>">
+        <button type="submit">ค้นหา</button>
+    </form>
+    <h4>ค้นหาข้อมูลรับสมัครงาน</h4>
+    <% if (locals.data) { %>
+    <div class="table-container">
+    <table border="1">
+        <thead><tr><th>ชื่อบริษัท</th><th>สถานที่ตั้ง</th><th>เว็บไซต์</th><th>ตำแหน่งที่เปิดรับ</th><th>รายละเอียด</th><th>เงินเดือน</th><th>เบอร์ติดต่อ</th><th>วันที่เพิ่มข้อมูล</th></tr></thead>
+        <% for (doc of data) {
+            let dateTimeStamp = new Date(Date.parse(doc.date_added))
+            let date = dateTimeStamp.getDate()
+            let month = dateTimeStamp.getMonth() + 1
+            let year = dateTimeStamp.getFullYear()
+            let now = `${date}-${month}-${year}`
+        %>
+        <tbody>
+        <tr>
+            <td><%= doc.companyname %></td>
+            <td><%= doc.location %></td>
+            <td><%= doc.websitecompany %></td>
+            <td><%= doc.title %></td>
+            <td><%= doc.description %></td>
+            <td><%= doc.salary %></td>
+            <td><%= doc.telephonenumber %></td>
+            <td><%= now %></td>
+        </tr>
+        </tbody>
+        <% } %>
+    </table>
+    </div>
+    <% } %>
+</body>
+</html>
