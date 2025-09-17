@@ -1,3 +1,4 @@
+require('dotenv').config()
 const paginate = require('mongoose-paginate-v2')
 const mongoose = require('mongoose')
 
@@ -12,7 +13,7 @@ connect.catch(err => console.log('Database cannot be connected' + err))
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_CONNECT_URI)
+    await mongoose.connect(process.env.MONGODB_URI)
     console.log('Database connected successfully')
   } catch (err) {
     console.log('Database cannot be connected' + err.message)
