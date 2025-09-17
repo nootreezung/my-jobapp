@@ -252,6 +252,7 @@ app.get('/shows-paging-no-data-job', (request, response) => {
     })
 })
 
+/*
 app.all('/upload', (request, response) => {
     if (request.method == 'GET') {
         response.render('upload')
@@ -297,6 +298,7 @@ app.all('/upload', (request, response) => {
         })
     }
 })
+*/
 
 app.use((request, response) => {
     response.status(404)
