@@ -1,3 +1,5 @@
+require('dotenv').config()
+const port = process.env.PORT
 const models = require('./models')
 const connect = models.connect
 connect()
