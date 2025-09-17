@@ -1,2 +1,2 @@
 # my-jobapp
-This website shows about CRUD of Express.js with MongoDB database. https://my-jobapp.onrender.com/ - สมัครสมาชิกและทดลองใช้งานได้เลยครับ - You can sign up and test it now.
+This website will demonstrate how to add, delete, edit, and search for data related to job openings. You need to sign up to obtain a username and password. Then, you can use the account you signed up for to add, delete, edit, and find data about job openings on the website and use it whenever you want. The password you registered on the website will be encrypted using the bcrypt module to protect you from other users who may attempt to access your account.
