@@ -32,7 +32,7 @@ app.all('/signup', async (request, response) => {
         }
 
         // ตรวจสอบผู้ใช้ว่ามีอยู่ในฐานข้อมูลแล้วหรือไม่
-        const existingUser = /*await*/ collection.findOne({ name: data.name })
+        const existingUser = await collection.findOne({ name: data.name })
         console.log('data.name => ' + data.name)
         console.log('existingUser => ' + existingUser)
 
@@ -43,13 +43,13 @@ app.all('/signup', async (request, response) => {
             const saltRounds = 10 // กำหนดรอบในการประมวลผล salt rounds ยิ่งมากยิ่ง hash ปลอดภัยขึ้น
             // ทำการแปลงพาสเวิร์ดให้อยู่ในรูปของค่า Hash เพื่อให้ยากในการถอดรหัสของพาสเวิร์ด
             console.log('data.password => ' + data.password)
-            const hashedPassword = /*await*/ bcrypt.hash(data.password, saltRounds)
+            const hashedPassword = await bcrypt.hash(data.password, saltRounds)
             console.log('hashedPassword => ' + hashedPassword)
 
             // แทนที่พาสเวิร์ดที่ถูกเข้ารหัสแล้วกับพาสเวิร์ดเดิมก่อนที่จะถูกเข้ารหัส
             data.password = hashedPassword
 
-            const userData = /*await*/ collection.insertMany(data)
+            const userData = await collection.insertMany(data)
             console.log('userData => ' + userData)
             response.render('login')
         }
@@ -58,15 +58,15 @@ app.all('/signup', async (request, response) => {
     }
 })
 
-app.post('/login', /*async*/ (request, response) => {
+app.post('/login', async (request, response) => {
     try {
-        const checkRegister = /*await*/ collection.findOne({ name: request.body.username })
+        const checkRegister = await collection.findOne({ name: request.body.username })
         if (!checkRegister) {
             response.send('User name cannot found')
         }
 
         // ทำการเปรียบเทียบพาสเวิร์ดที่ถูกเข้ารหัสจากฐานข้อมูลกับข้อความในรูปแบบ plain ว่าเหมือนกันไหม
-        const isPasswordMatch = /*await*/ bcrypt.compare(request.body.password, checkRegister.password)
+        const isPasswordMatch = await bcrypt.compare(request.body.password, checkRegister.password)
         if (isPasswordMatch) {
             response.render('index')
         } else {

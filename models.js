@@ -2,11 +2,24 @@ const paginate = require('mongoose-paginate-v2')
 const mongoose = require('mongoose')
 
 // ตรวจสอบว่ามีการเชื่อมต่อไปยังฐานข้อมูลแล้วหรือไม่
+/*
 const connect = mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 120000, socketTimeoutMS: 120000,
 })
 connect.then(() => console.log('Database connected successfully'))
 connect.catch(err => console.log('Database cannot be connected' + err))
+*/
+
+const connect = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI)
+    console.log('Database connected successfully')
+  } catch (err) {
+    console.log('Database cannot be connected' + err)
+  }
+}
+
+connect()
 
 const dataApplication = new mongoose.Schema({
   companyname: { type: String, required: true },
