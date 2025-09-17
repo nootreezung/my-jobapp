@@ -1,7 +1,7 @@
 require('dotenv').config()
 const port = process.env.PORT
 const models = require('./models')
-const connect = models.connect
+const connect = require('./models')
 connect()
 const collection = models.collection
 const Jobapp = models.Jobapp
