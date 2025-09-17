@@ -1,7 +1,8 @@
 require('dotenv').config()
 const port = process.env.PORT
-const dbURI = process.env.MONGODB_URI
 const models = require('./models')
+const connect = models.connect
+connect()
 const collection = models.collection
 const Jobapp = models.Jobapp
 const express = require('express')

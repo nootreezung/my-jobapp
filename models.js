@@ -15,11 +15,9 @@ const connect = async () => {
     await mongoose.connect(process.env.MONGODB_URI)
     console.log('Database connected successfully')
   } catch (err) {
-    console.log('Database cannot be connected' + err)
+    console.log('Database cannot be connected' + err.message)
   }
 }
-
-connect()
 
 const dataApplication = new mongoose.Schema({
   companyname: { type: String, required: true },
@@ -44,5 +42,6 @@ const loginSchema = new mongoose.Schema({
 const Jobapp = new mongoose.model('Jobapp', dataApplication)
 const collection = new mongoose.model('User', loginSchema)
 
+module.exports = connect
 module.exports.Jobapp = Jobapp
 module.exports.collection = collection
