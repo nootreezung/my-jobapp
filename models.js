@@ -2,7 +2,7 @@ const paginate = require('mongoose-paginate-v2')
 const mongoose = require('mongoose')
 
 const connect = mongoose.connect(process.env.MONGODB_URI, { 
-  useNewUrlParser: true, useUnifiedTopology: true, connectTimeoutMS: 180000, socketTimeoutMS: 180000,
+  useNewUrlParser: true, useUnifiedTopology: true, connectTimeoutMS: 180000, socketTimeoutMS: 180000, bufferCommands: false
 })
 
  // ตรวจสอบว่ามีการเชื่อมต่อไปยังฐานข้อมูลแล้วหรือไม่
