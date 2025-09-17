@@ -42,6 +42,6 @@ const loginSchema = new mongoose.Schema({
 const Jobapp = new mongoose.model('Jobapp', dataApplication)
 const collection = new mongoose.model('User', loginSchema)
 
-module.exports = connect
+module.exports.connect = connect
 module.exports.Jobapp = Jobapp
 module.exports.collection = collection
