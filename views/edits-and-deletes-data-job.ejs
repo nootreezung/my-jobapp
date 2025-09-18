@@ -148,18 +148,17 @@
         %>
         <tbody>
         <tr>
-            <td data-label="แก้ไข">
-                <a href="/edits-job/<%= doc._id %>" class="btn-action btn-edit">แก้ไข</a> | 
-                 <a href="javascript: deleteData('<%= doc._id %>')" class="btn-action btn-delete">ลบ</a>
+            <td data-label="แก้ไขหรือลบ">
+                <a href="/edits-job/<%= doc._id %>" class="btn-action btn-edit">แก้ไข</a> | <a href="javascript: deleteData('<%= doc._id %>')" class="btn-action btn-delete">ลบ</a>
             </td>
-            <td data-label="companyname"><%= doc.companyname %></td>
-            <td data-label="location"><%= doc.location %></td>
-            <td data-label="websitecompane"><%= doc.websitecompany %></td>
-            <td data-label="title"><%= doc.title %></td>
-            <td data-label="description"><%= doc.description %></td>
-            <td data-label="salary"><%= doc.salary %></td>
-            <td data-label="telephonenumber"><%= doc.telephonenumber %></td>
-            <td data-label="dateTimeFormat"><%= dateTimeFormat %></td>
+            <td data-label="ชื่อบริษัท"><%= doc.companyname %></td>
+            <td data-label="สถานที่ตั้ง"><%= doc.location %></td>
+            <td data-label="เว็บไซต์"><%= doc.websitecompany %></td>
+            <td data-label="ตำแหน่งที่เปิดรับ"><%= doc.title %></td>
+            <td data-label="รายละเอียด"><%= doc.description %></td>
+            <td data-label="เงินเดือน"><%= doc.salary %></td>
+            <td data-label="เบอร์ติดต่อ"><%= doc.telephonenumber %></td>
+            <td data-label="วันที่เพิ่มข้อมูล"><%= dateTimeFormat %></td>
         </tr>
         </tbody>
         <% } %>
