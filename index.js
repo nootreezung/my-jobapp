@@ -65,7 +65,7 @@ app.post('/login', async (request, response) => {
         if (!checkRegister) {
             response.status(404)
             response.type('text/html')
-            response.send('User name cannot found')
+            response.send('<center><h3>User name cannot found</center>')
         }
 
         // ทำการเปรียบเทียบพาสเวิร์ดที่ถูกเข้ารหัสจากฐานข้อมูลกับข้อความในรูปแบบ plain ว่าเหมือนกันไหม
