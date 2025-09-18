@@ -63,6 +63,8 @@ app.post('/login', async (request, response) => {
     try {
         const checkRegister = await collection.findOne({ name: request.body.username })
         if (!checkRegister) {
+            response.status(404)
+            response.type('text/html')
             response.send('User name cannot found')
         }
 
@@ -71,10 +73,14 @@ app.post('/login', async (request, response) => {
         if (isPasswordMatch) {
             response.render('index')
         } else {
-            response.send('Wrong password')
+            response.status(401)
+            response.type('text/html')
+            response.send('<center><h3>Wrong password</h3></center>')
         }
     } catch {
-        response.send('Wrong Details')
+        response.status(404)
+        response.type('text/html')
+        response.send('<center><h3>Wrong Details</center>')
     }
 })
 
