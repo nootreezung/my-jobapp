@@ -38,7 +38,9 @@ app.all('/signup', async (request, response) => {
         console.log('existingUser => ' + existingUser)
 
         if (existingUser) {
-            response.send('User already exists. Please choose a different username.')
+            response.status(409)
+            response.type('text/html')
+            response.send('<h3>User already exists. Please choose a different username.</h3>')
         } else {
             // เข้ารหัสข้อมูลโดยการใช้เมธอด bcrypt
             const saltRounds = 10 // กำหนดรอบในการประมวลผล salt rounds ยิ่งมากยิ่ง hash ปลอดภัยขึ้น
