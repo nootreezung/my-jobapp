@@ -177,12 +177,12 @@
 </head>
 <body>
     <a href="/index" class="top-link">หน้าแรก</a><br><br>
-    <form method="get" action="/searchs-data-job">
+    <form method="get" action="/searchs-data-job" class="search-form">
         <% 
             let searchw = (searchj) ? searchj : '' 
         %>
-        <input type="text" name="searchjob" placeholder="ค้นหา (งาน) ที่ต้องการ" class="search-form" value="<%= searchw %>">
-        <button type="submit">ค้นหา</button>
+        <input type="text" name="searchjob" placeholder="ค้นหา (งาน) ที่ต้องการ" class="search-form" value="<%= searchw %>" class="search-input">
+        <button type="submit" class="search-btn">ค้นหา</button>
     </form>
     <h4>ค้นหาข้อมูลรับสมัครงาน</h4>
     <% if (locals.data) { %>
