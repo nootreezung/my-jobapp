@@ -53,7 +53,7 @@
           background: #059669;
           transform: translateY(-2px);
         }
-        -->
+        
         .search-form {
           display: flex;
           justify-content: flex-end; /* อยู่ด้านขวา */
@@ -93,6 +93,53 @@
           }
           .search-input, .search-btn {
             width: 100%; /* กินเต็มความกว้าง */
+          }
+        }
+        -->
+
+        .search-form {
+          display: flex;
+          justify-content: flex-end; /* ดันไปด้านขวา */
+          gap: 8px;
+          margin-bottom: 20px;
+          align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+        }
+        
+        .search-input {
+          padding: 8px 10px;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          font-size: 0.9rem;
+          flex: 1; /* ✅ ขยายเต็มพื้นที่ใน flex container */
+        }
+        
+        .search-btn {
+          padding: 8px 14px;
+          background: #10b981; /* เขียว */
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 0.9rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.2s;
+          flex: 1; /* ✅ ทำให้ปุ่มกว้างเท่ากับ input */
+          text-align: center;
+        }
+        
+        .search-btn:hover {
+          background: #059669;
+          transform: translateY(-2px);
+        }
+        
+        @media (max-width: 600px) {
+          .search-form {
+            flex-direction: column; /* พับลงบนมือถือ */
+            align-items: stretch;
+          }
+          .search-input,
+          .search-btn {
+            width: 100%; /* ✅ กินเต็มจอเวลามือถือ */
           }
         }
 
