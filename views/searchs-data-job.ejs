@@ -24,21 +24,20 @@
 
         .search-form {
           display: flex;
-          justify-content: flex-end; /* อยู่ด้านขวา */
           gap: 8px;
-          margin-bottom: 20px;
+          align-items: center;
         }
-        
-        .search-input {
+
+        .search-form input[type="text"] {
           padding: 8px 10px;
           border: 1px solid #d1d5db;
           border-radius: 6px;
           font-size: 0.9rem;
           min-width: 200px;
         }
-        
-        .search-btn {
-          padding: 8px 14px;
+
+        .search-form button {
+          padding: 8px 10px;
           background: #10b981; /* เขียว */
           color: white;
           border: none;
@@ -48,21 +47,12 @@
           cursor: pointer;
           transition: background 0.2s, transform 0.2s;
         }
-        
-        .search-btn:hover {
-          background: #059669;
-        }
-        
-        @media (max-width: 600px) {
-          .search-form {
-            flex-direction: column; /* พับลงบนมือถือ */
-            align-items: stretch;
-          }
-          .search-input, .search-btn {
-            width: 100%; /* กินเต็มความกว้าง */
-          }
-        }
 
+        .search-form button:hover {
+          background: #059669;
+          transform: translateY(-2px);
+        }
+        
         h4 {
           text-align: center; // margin: 20px 0;
           font-size: 1.25rem;
