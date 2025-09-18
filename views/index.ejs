@@ -5,15 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index Page</title>
     <style>
-        #mainpage {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 10px;
-            font-family: tahoma;
-        }
-
         body {
-            background-color: burlywood;
+          margin: 0;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: Arial, sans-serif;
+          background: #f4f4f9;
+        }
+    
+        #mainpage {
+          background: #fff;
+          padding: 30px 20px;
+          border-radius: 10px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          text-align: center;
+          width: 90%;
+          max-width: 400px;
+        }
+    
+        #mainpage h4 {
+          margin-bottom: 20px;
+          color: #333;
+          font-size: 1.5rem;
+        }
+    
+        #mainpage a {
+          display: block;
+          margin: 10px 0;
+          padding: 12px;
+          background: #007BFF;
+          color: #fff;
+          text-decoration: none;
+          border-radius: 6px;
+          font-size: 1rem;
+          transition: background 0.3s, transform 0.2s;
+        }
+    
+        #mainpage a:hover {
+          background: #0056b3;
+          transform: translateY(-2px);
+        }
+    
+        /* Responsive Design */
+        @media (max-width: 480px) {
+          #mainpage {
+            padding: 20px 15px;
+          }
+    
+          #mainpage h4 {
+            font-size: 1.2rem;
+          }
+    
+          #mainpage a {
+            font-size: 0.9rem;
+            padding: 10px;
+          }
         }
     </style>
 </head>
