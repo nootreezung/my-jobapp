@@ -50,7 +50,7 @@
 
         thead th {
           padding: 12px 10px;
-          text-align: left;
+          text-align: center;
           font-size: 0.9rem;
           font-weight: 600;
         }
@@ -68,6 +68,7 @@
           padding: 10px;
           font-size: 0.9rem;
           color: #374151;
+          text-align: center;
         }
 
         tbody td:first-child {
@@ -160,14 +161,14 @@
         %>
         <tbody>
         <tr>
-            <td data-label="companyname"><%= doc.companyname %></td>
-            <td data-label="location"><%= doc.location %></td>
-            <td data-label="websitecompany"><%= doc.websitecompany %></td>
-            <td data-label="title"><%= doc.title %></td>
-            <td data-label="description"><%= doc.description %></td>
-            <td data-label="salary"><%= doc.salary %></td>
-            <td data-label="telephonenumber"><%= doc.telephonenumber %></td>
-            <td data-label="transformDate"><%= transformDate %></td>
+            <td data-label="ชื่อบริษัท"><%= doc.companyname %></td>
+            <td data-label="สถานที่ตั้ง"><%= doc.location %></td>
+            <td data-label="เว็บไซต์"><%= doc.websitecompany %></td>
+            <td data-label="ตำแหน่งที่เปิดรับ"><%= doc.title %></td>
+            <td data-label="รายละเอียด"><%= doc.description %></td>
+            <td data-label="เงินเดือน"><%= doc.salary %></td>
+            <td data-label="เบอร์ติดต่อ"><%= doc.telephonenumber %></td>
+            <td data-label="วันที่เพิ่มข้อมูล"><%= transformDate %></td>
         </tr>
         </tbody>
         <% } %>
