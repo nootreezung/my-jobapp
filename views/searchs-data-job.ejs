@@ -6,38 +6,119 @@
     <title>Searchs Data Job</title>
     <style>
         body {
-            margin: 20px;
-            font-family: sans-serif;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          margin: 20px;
+          background-color: #f9fafb;
+          color: #333;
         }
-
+        .home-link {
+          display: inline-block;
+          margin-bottom: 20px;
+          padding: 8px 14px;
+          background: #2563eb;
+          color: white;
+          font-weight: 500;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: background 0.2s, transform 0.2s;
+        }
+        .home-link:hover {
+          background: #1e40af;
+          transform: translateY(-2px);
+        }
+        h4 {
+          margin: 20px 0;
+          font-size: 1.25rem;
+          font-weight: bold;
+          color: #111827;
+        }
         .table-container {
-            width: 100%;
-            overflow-x: auto;
+          overflow-x: auto;
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          padding: 1rem;
         }
-
         table {
-            width: 100%;
-            min-width: 600px; /* ป้องกันตารางแคบเกินไป */
-            border-collapse: collapse;
-            border: solid 2px gray;
+          width: 100%;
+          border-collapse: collapse;
+          min-width: 600px;
         }
-
-        td, th {
-            padding: 8px;
-            text-align: center;
-            border: 1px solid #ccc;
-            white-space: nowrap; /* ป้องกันข้อความขึ้นบรรทัดใหม่ */
+        thead {
+          background-color: #2563eb;
+          color: #fff;
         }
-
-        th {
-            background-color: #cde;
+        thead th {
+          padding: 12px 10px;
+          text-align: left;
+          font-size: 0.9rem;
+          font-weight: 600;
         }
-
-        @media screen and (max-width: 600px) {
-            td, th {
-                padding: 6px;
-                font-size: 14px;
-            }
+        tbody tr {
+          border-bottom: 1px solid #e5e7eb;
+          transition: background 0.2s;
+        }
+        tbody tr:hover {
+          background-color: #f3f4f6;
+        }
+        tbody td {
+          padding: 10px;
+          font-size: 0.9rem;
+          color: #374151;
+        }
+        tbody td:first-child {
+          white-space: nowrap;
+        }
+        .btn-action {
+          margin-right: 8px;
+          padding: 4px 8px;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          transition: all 0.2s;
+        }
+        .btn-edit {
+          background: #2563eb;
+          color: white;
+        }
+        .btn-edit:hover {
+          background: #1e40af;
+        }
+        .btn-delete {
+          background: #dc2626;
+          color: white;
+        }
+        .btn-delete:hover {
+          background: #991b1b;
+        }
+    
+        /* Responsive */
+        @media (max-width: 768px) {
+          table {
+            font-size: 0.8rem;
+            min-width: unset;
+          }
+          thead {
+            display: none;
+          }
+          tbody tr {
+            display: block;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 10px;
+            background: #fff;
+          }
+          tbody td {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 5px;
+          }
+          tbody td::before {
+            content: attr(data-label);
+            font-weight: 600;
+            color: #111827;
+          }
         }
     </style>
 </head>
