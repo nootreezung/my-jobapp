@@ -140,7 +140,7 @@
     <% if (locals.data) { %>
     <div class="table-container">
     <table border="1">
-        <thead><tr><th>แก้ไข</th><th>ชื่อบริษัท</th><th>สถานที่ตั้ง</th><th>เว็บไซต์</th><th>ตำแหน่งที่เปิดรับ</th><th>รายละเอียด</th><th>เงินเดือน</th><th>เบอร์ติดต่อ</th><th>วันที่เพิ่มข้อมูล</th></tr></thead>
+        <thead><tr><th>ชื่อบริษัท</th><th>สถานที่ตั้ง</th><th>เว็บไซต์</th><th>ตำแหน่งที่เปิดรับ</th><th>รายละเอียด</th><th>เงินเดือน</th><th>เบอร์ติดต่อ</th><th>วันที่เพิ่มข้อมูล</th><th>แก้ไข</th></tr></thead>
         <%
             for (doc of data) {
                 let dateTime = new Date(Date.parse(doc.date_added))
@@ -148,9 +148,6 @@
         %>
         <tbody>
         <tr>
-            <td data-label="แก้ไขหรือลบ">
-                <a href="/edits-job/<%= doc._id %>" class="btn-action btn-edit">แก้ไข</a> | <a href="javascript: deleteData('<%= doc._id %>')" class="btn-action btn-delete">ลบ</a>
-            </td>
             <td data-label="ชื่อบริษัท"><%= doc.companyname %></td>
             <td data-label="สถานที่ตั้ง"><%= doc.location %></td>
             <td data-label="เว็บไซต์"><%= doc.websitecompany %></td>
@@ -159,6 +156,9 @@
             <td data-label="เงินเดือน"><%= doc.salary %></td>
             <td data-label="เบอร์ติดต่อ"><%= doc.telephonenumber %></td>
             <td data-label="วันที่เพิ่มข้อมูล"><%= dateTimeFormat %></td>
+            <td data-label="แก้ไขหรือลบ">
+                <a href="/edits-job/<%= doc._id %>" class="btn-action btn-edit">แก้ไข</a> | <a href="javascript: deleteData('<%= doc._id %>')" class="btn-action btn-delete">ลบ</a>
+            </td>
         </tr>
         </tbody>
         <% } %>
