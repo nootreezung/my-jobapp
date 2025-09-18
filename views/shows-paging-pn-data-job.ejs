@@ -161,14 +161,14 @@
         %>
         <tbody>
         <tr>
-            <td><%= doc.companyname %></td>
-            <td><%= doc.location %></td>
-            <td><%= doc.websitecompany %></td>
-            <td><%= doc.title %></td>
-            <td><%= doc.description %></td>
-            <td><%= doc.salary %></td>
-            <td><%= doc.telephonenumber %></td>
-            <td><%= fullDate %></td>
+            <td data-label="ชื่อบริษัท"><%= doc.companyname %></td>
+            <td data-label="สถานที่ตั้ง"><%= doc.location %></td>
+            <td data-label="เว็บไซต์"><%= doc.websitecompany %></td>
+            <td data-label="ตำแหน่งที่เปิดรับ"><%= doc.title %></td>
+            <td data-label="รายละเอียด"><%= doc.description %></td>
+            <td data-label="เงินเดือน"><%= doc.salary %></td>
+            <td data-label="เบอร์ติดต่อ"><%= doc.telephonenumber %></td>
+            <td data-label="วันที่เพิ่มข้อมูล"><%= fullDate %></td>
         </tr>
         </tbody>
         <% } %>
