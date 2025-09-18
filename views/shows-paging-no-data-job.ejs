@@ -5,39 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shows Paging No Data Job</title>
     <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+    
         body {
-            margin: 20px;
-            font-family: sans-serif;
+          font-family: Arial, sans-serif;
+          background: #f9f9f9;
+          padding: 20px;
         }
-
+    
+        .container {
+          max-width: 1000px;
+          margin: 0 auto;
+          background: #fff;
+          border-radius: 10px;
+          padding: 20px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          position: relative;
+        }
+    
+        .top-link {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          color: #007BFF;
+          text-decoration: none;
+          font-weight: bold;
+        }
+    
+        .top-link:hover {
+          text-decoration: underline;
+        }
+    
+        h4 {
+          text-align: center;
+          margin-bottom: 20px;
+          color: #333;
+        }
+    
         .table-container {
-            width: 100%;
-            overflow-x: auto;
+          width: 100%;
+          overflow-x: auto;
         }
-
+    
         table {
-            width: 100%;
-            min-width: 600px; /* ป้องกันตารางแคบเกินไป */
-            border-collapse: collapse;
-            border: solid 2px gray;
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.95rem;
         }
-
-        td, th {
-            padding: 8px;
-            text-align: center;
-            border: 1px solid #ccc;
-            white-space: nowrap; /* ป้องกันข้อความขึ้นบรรทัดใหม่ */
+    
+        th, td {
+          border: 1px solid #ddd;
+          padding: 10px;
+          text-align: left;
         }
-
+    
         th {
-            background-color: #cde;
+          background: #007BFF;
+          color: white;
         }
-
-        @media screen and (max-width: 600px) {
-            td, th {
-                padding: 6px;
-                font-size: 14px;
-            }
+    
+        tr:nth-child(even) {
+          background: #f2f2f2;
+        }
+    
+        @media (max-width: 600px) {
+          .top-link {
+            position: static;
+            display: block;
+            text-align: right;
+            margin-bottom: 15px;
+          }
+    
+          .container {
+            padding-top: 10px;
+          }
+    
+          table, th, td {
+            font-size: 0.85rem;
+          }
         }
     </style>
 </head>
