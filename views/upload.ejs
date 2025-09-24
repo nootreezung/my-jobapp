@@ -77,6 +77,16 @@
             text-decoration: underline;
         }
 
+        .top-link {
+          color: #007BFF;
+          text-decoration: none;
+          font-weight: bold;
+        }
+    
+        .top-link:hover {
+          text-decoration: underline;
+        }
+
         @media (max-width: 400px) {
             form, #result {
                 width: 90%;
@@ -107,7 +117,7 @@
             last modified: <%= fileInfo.lastModified %>
         </div>
         <br><br>
-        <a href="/index">หน้าแรก</a>
+        <a href="/index" class="top-link">หน้าแรก</a>
     <% } %>
 </body>
 </html>
