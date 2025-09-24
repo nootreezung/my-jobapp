@@ -295,8 +295,8 @@ app.all('/upload', (request, response) => {
             console.log('upfile.originalFilename => ' + newName.originalFilename)
             try {
                 // fileSystem.renameSync(upfile.filepath, newfile)
-                fileSystem.copyFileSync(upfile.filepath, newfile)
-                fileSystem.unlinkSync(upfile.filepath)
+                fileSystem.copyFileSync(upfile.filepath, newfile) // คัดลอกไฟล์ จากที่อยู่ต้นทาง upfile.filepath ไปยังที่อยู่ปลายทาง newfile; คัดลอกไฟล์
+                fileSystem.unlinkSync(upfile.filepath) // ลบไฟล์ต้นทาง unlink = ลบไฟล์ หลังจาก Copy เสร็จ เพื่อให้ผลลัพธ์เหมือน rename คือไฟล์ย้ายไปอยู่ที่ใหม่ ไม่มีไฟล์เหลือที่ tmp; ลบไฟล์เก่า
             } catch (err) {
                 console.log('renameSync Error: ', err)
                 response.end()
@@ -314,7 +314,7 @@ app.all('/upload', (request, response) => {
                         name: newName,
                         type: upfile.mimetype,
                         size: upfile.size,
-                        lastModified: new Date().toLocaleString(),
+                        lastModified: new Date().toLocaleString(), // .toLocaleString() ใช้แปลงวันที่และเวลาให้เป็นข้อความ String ตามรูปแบบท้องถิ่น Locale ของระบบ
                     } 
                 } // files.upfile
             }
