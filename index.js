@@ -294,7 +294,7 @@ app.all('/upload', (request, response) => {
             // ทำการคัดลอกไฟล์ไปเก็บไว้ที่โฟลเดอร์ของเซิร์ฟเวอร์
             console.log('upfile.originalFilename => ' + files.upfile.originalFilename)
             try {
-                fileSystem.renameSync(files.upfile.originalFilename, newfile, err => { })
+                fileSystem.renameSync(files.upfile.path, newfile, err => { })
             } catch (err) {
                 console.log('renameSync Error: ', err)
             }
