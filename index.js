@@ -293,8 +293,12 @@ app.all('/upload', (request, response) => {
             }
             // ทำการคัดลอกไฟล์ไปเก็บไว้ที่โฟลเดอร์ของเซิร์ฟเวอร์
             console.log('upfile.originalFilename => ' + upfile.originalFilename)
-            fileSystem.renameSync(files.upfile.filepath, newfile, err => { })
-
+            try {
+                fileSystem.renameSync(files.upfile.filepath, newfile, err => { })
+            } catch (err) {
+                console.log('renameSync Error: ', e)
+            }
+            
             // สร้างตัวแปรสำหรับรับค่าเพื่อส่งไปแสดงผลที่เท็มเพลตของเรา
             let data = {}
             
