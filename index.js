@@ -260,7 +260,6 @@ app.get('/shows-paging-no-data-job', (request, response) => {
     })
 })
 
-/*
 app.all('/upload', (request, response) => {
     if (request.method == 'GET') {
         response.render('upload')
@@ -269,7 +268,7 @@ app.all('/upload', (request, response) => {
         let form = new formidable.IncomingForm()
         form.parse(request, (err, fields, files) => {
             if (err) {
-                console.log('Error')
+                console.log('Error:', err)
                 response.end()
                 return
             }
@@ -279,34 +278,34 @@ app.all('/upload', (request, response) => {
                 return
             }
 
+            let upfile = files.upfile
             let dir = 'public/upload/'
-            let newfile = dir + files.upfile.originalFilename
-            let newName = files.upfile.originalFilename // ชื่อไฟล์ปัจจุบันที่มีการอัปโหลดเข้ามาที่เซิร์ฟเวอร์
+            let newfile = dir + upfile.originalFilename
+            let newName = upfile.originalFilename // ชื่อไฟล์ปัจจุบันที่มีการอัปโหลดเข้ามาที่เซิร์ฟเวอร์
 
             // ถ้าไม่ต้องการให้เขียนทับไฟล์เดิม และให้ไฟล์มีชื่อซ้ำกัน
             if (!fields.overwrite && fileSystem.existsSync(newfile)) {
-                let oldName = files.upfile.originalFilename.split('.') // แยกชื่อไฟล์ด้วย . กรณีซ้ำกัน
+                let oldName = upfile.originalFilename.split('.') // แยกชื่อไฟล์ด้วย . กรณีซ้ำกัน
                 let randomNumber = Math.floor(Math.random() * 999999) // สร้างเลขสุ่มสำหรับต่อชื่อไฟล์ซ้ำที่เจอ
                 oldName[0] += '_' + randomNumber // เชื่อมต่อชื่อไฟล์เดิมด้วย Underscore และค่าเลขสุ่มที่ได้มาใหม่
                 newName = oldName.join('.') // รวมชื่อไฟล์ใหม่เข้ากับส่วนขยายของไฟล์เก่าที่แยกออกมาก่อนหน้านี้
                 newfile = dir + newName // ไฟล์ใหม่พร้อมพาธที่จะนำไปใส่ในเมธอด renameSync() สำหรับคัดลอกไฟล์ไปเก็บไว้ในโฟลเดอร์ของ Server
             }
             // ทำการคัดลอกไฟล์ไปเก็บไว้ที่โฟลเดอร์ของเซิร์ฟเวอร์
-            console.log('upfile.originalFilename => ' + files.upfile.originalFilename)
-            fileSystem.renameSync(files.upfile.originalFilename, newfile, err => { })
+            console.log('upfile.originalFilename => ' + upfile.originalFilename)
+            fileSystem.renameSync(upfile.filepath, newfile, err => { })
 
             // สร้างตัวแปรสำหรับรับค่าเพื่อส่งไปแสดงผลที่เท็มเพลตของเรา
             let data = {}
             
             // ทำการเช็คว่าประเภทไฟล์เป็นรูปภาพไหม ถ้าใช่ให้ส่งไปแสดงผลที่เท็มเพลตของเรา
-            if (files.upfile.type.match('image/')) {
+            if (upfile.mimetype.match('image/')) {
                 data = { file: 'upload/' + newName, fileInfo: upfile } // files.upfile
             }
             response.render('upload', data)
         })
     }
 })
-*/
 
 app.use((request, response) => {
     response.status(404)
