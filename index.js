@@ -265,7 +265,7 @@ app.all('/upload', (request, response) => {
         response.render('upload')
         return
     } else {
-        let form = new formidable.IncomingForm({ multiples: false })
+        let form = new formidable.IncomingForm({ multiples: false, allowEmptyFiles: true }) // ไม่ต้องการหลายไฟล์, อนุญาตให้ไฟล์ว่าง 0 bytes โดยไม่มี Error
         form.parse(request, (err, fields, files) => {
             if (err) {
                 console.log('Error parsing form: ', err)
@@ -274,7 +274,7 @@ app.all('/upload', (request, response) => {
             }
 
             const upfile = files.upfile ? files.upfile[0] : null
-            if (!upfile || upfile.originalFilename === '') {
+            if (!upfile || upfile.originalFilename === '' || upfile.size === 0) {
                 response.render('upload')
                 return
             }
