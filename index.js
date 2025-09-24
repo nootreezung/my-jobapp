@@ -292,7 +292,7 @@ app.all('/upload', (request, response) => {
                 newfile = dir + newName // ไฟล์ใหม่พร้อมพาธที่จะนำไปใส่ในเมธอด renameSync() สำหรับคัดลอกไฟล์ไปเก็บไว้ในโฟลเดอร์ของ Server
             }
             // ทำการคัดลอกไฟล์ไปเก็บไว้ที่โฟลเดอร์ของเซิร์ฟเวอร์
-            console.log('upfile.originalFilename => ' + newName.originalFilename)
+            console.log('upfile.originalFilename => ' + newName)
             try {
                 // fileSystem.renameSync(upfile.filepath, newfile)
                 fileSystem.copyFileSync(upfile.filepath, newfile) // คัดลอกไฟล์ จากที่อยู่ต้นทาง upfile.filepath ไปยังที่อยู่ปลายทาง newfile; คัดลอกไฟล์
