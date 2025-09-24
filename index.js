@@ -285,7 +285,7 @@ app.all('/upload', (request, response) => {
 
             // ถ้าไม่ต้องการให้เขียนทับไฟล์เดิม และให้ไฟล์มีชื่อซ้ำกัน
             if (!fields.overwrite && fileSystem.existsSync(newfile)) {
-                let oldName = upfile.originalFilename.split('.') // แยกชื่อไฟล์ด้วย . กรณีซ้ำกัน
+                let oldName = files.upfile.originalFilename.split('.') // แยกชื่อไฟล์ด้วย . กรณีซ้ำกัน
                 let randomNumber = Math.floor(Math.random() * 999999) // สร้างเลขสุ่มสำหรับต่อชื่อไฟล์ซ้ำที่เจอ
                 oldName[0] += '_' + randomNumber // เชื่อมต่อชื่อไฟล์เดิมด้วย Underscore และค่าเลขสุ่มที่ได้มาใหม่
                 newName = oldName.join('.') // รวมชื่อไฟล์ใหม่เข้ากับส่วนขยายของไฟล์เก่าที่แยกออกมาก่อนหน้านี้
