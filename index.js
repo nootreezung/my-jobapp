@@ -296,7 +296,7 @@ app.all('/upload', (request, response) => {
             try {
                 fileSystem.renameSync(files.upfile.filepath, newfile, err => { })
             } catch (err) {
-                console.log('renameSync Error: ', e)
+                console.log('renameSync Error: ', err)
             }
             
             // สร้างตัวแปรสำหรับรับค่าเพื่อส่งไปแสดงผลที่เท็มเพลตของเรา
