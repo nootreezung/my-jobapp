@@ -284,7 +284,7 @@ app.all('/upload', (request, response) => {
             let newName = upfile.originalFilename // ชื่อไฟล์ปัจจุบันที่มีการอัปโหลดเข้ามาที่เซิร์ฟเวอร์
 
             // ถ้าไม่ต้องการให้เขียนทับไฟล์เดิม และให้ไฟล์มีชื่อซ้ำกัน
-            if (!fields.overwrite && fileSystem.existsSync(newfile)) {
+            if (!fields.overwrite && fileSystem.existsSync(newfile) && upfile && upfile.orginalFilename) {
                 let oldName = files.upfile.originalFilename.split('.') // แยกชื่อไฟล์ด้วย . กรณีซ้ำกัน
                 let randomNumber = Math.floor(Math.random() * 999999) // สร้างเลขสุ่มสำหรับต่อชื่อไฟล์ซ้ำที่เจอ
                 oldName[0] += '_' + randomNumber // เชื่อมต่อชื่อไฟล์เดิมด้วย Underscore และค่าเลขสุ่มที่ได้มาใหม่
