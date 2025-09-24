@@ -314,7 +314,14 @@ app.all('/upload', (request, response) => {
                         name: newName,
                         type: upfile.mimetype,
                         size: upfile.size,
-                        lastModified: new Date().toLocaleString(), // .toLocaleString() ใช้แปลงวันที่และเวลาให้เป็นข้อความ String ตามรูปแบบท้องถิ่น Locale ของระบบ
+                        lastModified: new Date().toLocaleString("th-TH", {
+                            timeZone: "Asia/Bangkok",
+                            month: "2-digit",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit",
+                        }), // .toLocaleString() ใช้แปลงวันที่และเวลาให้เป็นข้อความ String ตามรูปแบบท้องถิ่น Locale ของระบบ
                     } 
                 } // files.upfile
             }
