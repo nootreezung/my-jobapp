@@ -330,7 +330,7 @@ app.all('/upload-multiple', (request, response) => {
         response.render('upload-multiple')
         return
     }
-    let form = new formidable.IncomingForm({ multiples: true, keepExtensions: true })
+    let form = new formidable.IncomingForm({ multiples: true, keepExtensions: true, allowEmptyFiles: true })
     form.parse(request, async (err, fields, files) => {
         if (err) {
             console.log('Form parse error: ', err)
