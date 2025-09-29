@@ -372,8 +372,14 @@ app.all('/upload-multiple', (request, response) => {
             }
             
             // ย้ายไฟล์จาก tmp ไปที่ upload
-            fileSystem.renameSync(oldPath, newPath)
-
+            // fileSystem.renameSync(oldPath, newPath)
+            try {
+                fileSystem.copyFileSync(oldPath, newPath); // คัดลอกไฟล์ไปยังปลายทาง
+                fileSystem.unlinkSync(oldPath);            // ลบไฟล์ต้นฉบับใน temp
+            } catch (err) {
+                console.error("File move error: ", err);
+            }
+            
             // เก็บข้อมูลไว้ส่งไปที่เท็มเพลตเพื่อแสดงผล
             fileInfo.push({
                 name: newName,
