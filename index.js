@@ -341,7 +341,7 @@ app.all('/upload-multiple', (request, response) => {
 
         // มี 2 กรณีที่จะไม่เป็นอาร์เรย์คือ 1. ไม่ได้เลือกไฟล์ใดๆ เลย 2. เลือกเพียง 1 ไฟล์
         if (!Array.isArray(upfiles)) {
-            if (!upfiles) {
+            if (!upfiles || upfiles.length === 0) {
                 response.render('upload-multiple')
                 return
             } else {
