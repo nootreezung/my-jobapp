@@ -340,7 +340,8 @@ app.all('/upload-multiple', (request, response) => {
         let upfiles = files.upfiles
         // เช็คว่ามีขนาดไฟล์ 0 bytes อัปโหลดเข้ามาหรือไม่
         if (upfiles.length == 0) {
-            return response.render('upload')
+            response.render('upload')
+            return
         }
         
         // มี 2 กรณีที่จะไม่เป็นอาร์เรย์คือ 1. ไม่ได้เลือกไฟล์ใดๆ เลย 2. เลือกเพียง 1 ไฟล์
