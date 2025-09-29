@@ -355,6 +355,7 @@ app.all('/upload-multiple', (request, response) => {
         let fileInfo = [] // ใช้เก็บข้อมูลของแต่ละไฟล์ เพื่อส่งไปยังเท็มเพลต
         let fileNames = [] // เก็บชื่อของแต่ละไฟล์ เพื่อส่งไปยังเท็มเพลต
         let filePaths = []
+        let randomNumber;
 
         for (f of upfiles) {
             let oldPath = f.filepath // แทน f.path
@@ -366,7 +367,7 @@ app.all('/upload-multiple', (request, response) => {
                 let nameParts = newName.split('.')
                 let pullExtensions = nameParts.pop() // แยกชื่อไฟล์กับนามสกุลของไฟล์ออกจากกัน
                 let mergeFileNames = nameParts.join('.')
-                let randomNumber = `${mergeFileNames}_${randomNumber}${pullExtensions}`
+                randomNumber = `${mergeFileNames}_${randomNumber}${pullExtensions}`
                 newName = oldName.join('.') // รวมชื่อไฟล์เข้ากับเลขสุ่มถ้ามีชื่อไฟล์ซ้ำกัน
                 newPath = dir + newName
             }
