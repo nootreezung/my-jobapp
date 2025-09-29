@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="th-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Multiple Page</title>
+    <script>
+        function checkSubmitForm() {
+            let file = document.querySelector('[type="file"]')
+            let files = file.files // files ใช้อ้างถึงข้อมูลที่มาจากอิลิเมนต์ชนิด file
+            if (files.length > 5) {
+                alert('เลือกได้ไม่เกิน 5 ไฟล์')
+                return
+            }
+            let maxFileSize = 500 * 1024 // 500KB
+            for (f of files) {
+                if (f.size > maxFileSize) {
+                    alert(`ขนาดของไฟล์ต้องไม่เกิน ${maxFileSize} KB`)
+                    return
+                }
+            }
+            document.querySelector('form').submit()
+        }
+    </script>
+</head>
+<body>
+    <form method="post" action="/upload-multiple" enctype="multipart/form-data">
+        <label>เลือกได้มากกว่า 1 ไฟล์</label><br><br>
+        <input type="file" name="upfiles" multiple><br><br>
+        <button type="button" onclick="checkSubmitForm()">OK</button>
+    </form>
+    <br>
+    <% if (locals.fileInfo) { %>
+    <div id="result">
+    <% fileInfo.forEach((f, i) => { %>
+        <hr> <%# ถ้าเป็นรูปภาพ ให้แสดงผลด้วยแท็ก <img> %>
+        <% if (f.type.match('image/')) { %>
+            <img src="/upload/<%= filePaths[i] %>" style="max-height: 60px;"><br>
+        <% } else { %> <%# ถ้าเป็นไฟล์ชนิดอื่น ให้สร้างลิงก์เพื่อดาวน์โหลด %>
+            <a href="/upload/<%= fileNames[i] %>"><%= fileNames[i] %></a><br>
+        <% } %>
+        Name: <%= f.name %><br>
+        Type: <%= f.type %><br>
+        Size: <%= f.size %> bytes<br>
+    <% }) %>
+    </div>
+    <% } %>
+</body>
+</html>
