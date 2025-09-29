@@ -367,7 +367,7 @@ app.all('/upload-multiple', (request, response) => {
                 let pullExtensions = nameParts.pop() // แยกชื่อไฟล์กับนามสกุลของไฟล์ออกจากกัน
                 let mergeFileNames = nameParts.join('.')
                 let randomNumber = Math.floor(Math.random() * 999999)
-                newName = `${mergeFileNames}_${randomNumber}${pullExtensions}`
+                newName = `${mergeFileNames}_${randomNumber}.${pullExtensions}`
                 newPath = dir + newName
             }
             
