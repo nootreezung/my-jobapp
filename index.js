@@ -325,6 +325,72 @@ app.all('/upload', (request, response) => {
     }
 })
 
+app.all('/upload-multiple', (request, response) => {
+    if (request.method == 'GET') {
+        response.render('upload-multiple')
+        return
+    }
+    let form = new formidable.IncomingForm({ multiples: true, keepExtensions: true })
+    form.parse(request, async (err, fields, files) => {
+        if (err) {
+            console.log('Form parse error: ', err)
+            return response.status(500).send('Upload Error')
+        }
+
+        let upfiles = files.upfiles
+
+        // มี 2 กรณีที่จะไม่เป็นอาร์เรย์คือ 1. ไม่ได้เลือกไฟล์ใดๆ เลย 2. เลือกเพียง 1 ไฟล์
+        if (!Array.isArray(upfiles)) {
+            if (!upfiles) {
+                response.render('upload-multiple')
+                return
+            } else {
+                // ถ้าอัปโหลดขึ้นมาแค่ 1 ไฟล์ ให้แปลงเป็นอาร์เรย์
+                // เพื่อใช้วิธีจัดการไฟล์แบบเดียวกันกับการอัปโหลดแบบหลายไฟล์
+                upfiles = [upfiles]
+            }
+        }
+
+        const dir = 'public/upload/'
+        let fileInfo = [] // ใช้เก็บข้อมูลของแต่ละไฟล์ เพื่อส่งไปยังเท็มเพลต
+        let fileNames = [] // เก็บชื่อของแต่ละไฟล์ เพื่อส่งไปยังเท็มเพลต
+        let filePaths = []
+
+        for (f of upfiles) {
+            let oldPath = f.filepath // แทน f.path
+            let newName = f.originalFilename // แทน f.name
+            let newPath = dir + newName
+
+            // ถ้ามีไฟล์ชื่อซ้ำให้กำหนดชื่อไฟล์ใหม่ขึ้นมาแทนชื่อไฟล์เดิมที่มีการอัปโหลดเข้ามา
+            if (fileSystem.existsSync(newPath)) { // เช็คว่าไฟล์มีชื่อซ้ำกับที่บันทึกไว้ในโฟลเดอร์ upload หรือไม่
+                let nameParts = newName.split('.')
+                let pullExtensions = nameParts.pop() // แยกชื่อไฟล์กับนามสกุลของไฟล์ออกจากกัน
+                let mergeFileNames = nameParts.join('.')
+                let randomNumber = `${mergeFileNames}_${randomNumber}${pullExtensions}`
+                newName = oldName.join('.') // รวมชื่อไฟล์เข้ากับเลขสุ่มถ้ามีชื่อไฟล์ซ้ำกัน
+                newPath = dir + newName
+            }
+            
+            // ย้ายไฟล์จาก tmp ไปที่ upload
+            fileSystem.renameSync(oldPath, newPath)
+
+            // เก็บข้อมูลไว้ส่งไปที่เท็มเพลตเพื่อแสดงผล
+            fileInfo.push({
+                name: newName,
+                type: f.mimetype,
+                size: f.size,
+            })
+            fileNames.push(newName)
+            filePaths.push(newName) // สำหรับรูปภาพ
+        }
+        response.render('upload-multiple', {
+            fileInfo,
+            fileNames,
+            filePaths,
+        })
+    })
+})
+
 app.use((request, response) => {
     response.status(404)
     response.type('text/html')
