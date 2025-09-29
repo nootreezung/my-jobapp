@@ -34,7 +34,7 @@
     <div id="result">
     <% fileInfo.forEach((f, i) => { %>
         <hr> <%# ถ้าเป็นรูปภาพ ให้แสดงผลด้วยแท็ก <img> %>
-        <% if (f.mimetype && f.mimetype.match('image/')) { %>
+        <% if (f.type.match('image/')) { %>
             <img src="/upload/<%= filePaths[i] %>" style="max-width: 120px; max-height: 120px;"><br>
         <% } else { %> <%# ถ้าเป็นไฟล์ชนิดอื่น ให้สร้างลิงก์เพื่อดาวน์โหลด %>
             <a href="/upload/<%= fileNames[i] %>"><%= fileNames[i] %></a><br>
