@@ -338,10 +338,14 @@ app.all('/upload-multiple', (request, response) => {
         }
 
         let upfiles = files.upfiles
-
+        // เช็คว่ามีขนาดไฟล์ 0 bytes อัปโหลดเข้ามาหรือไม่
+        if (upfiles.length == 0) {
+            return response.render('upload')
+        }
+        
         // มี 2 กรณีที่จะไม่เป็นอาร์เรย์คือ 1. ไม่ได้เลือกไฟล์ใดๆ เลย 2. เลือกเพียง 1 ไฟล์
         if (!Array.isArray(upfiles)) {
-            if (!upfiles || upfiles.length === 0) {
+            if (!upfiles) {
                 response.render('upload-multiple')
                 return
             } else {
