@@ -126,7 +126,7 @@
         <button type="button" onclick="checkSubmitForm()">OK</button>
     </form>
     <br>
-    <% if (locals.fileInfo) { %>
+    <% if (locals.fileInfo && fileInfo.length > 0) { %>
     <div id="result">
     <% fileInfo.forEach((f, i) => { %>
         <hr> <%# ถ้าเป็นรูปภาพ ให้แสดงผลด้วยแท็ก <img> %>
