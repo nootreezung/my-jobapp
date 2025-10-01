@@ -11,36 +11,36 @@
           min-height: 100vh;
           display: flex;
           flex-direction: column; /* บนลงล่าง */
-          justify-content: flex-start; /* เริ่มต้นด้านบน */
-          align-items: center; /* center แนวนอน */
+          justify-content: flex-start;
+          align-items: center;
           font-family: Arial, sans-serif;
           background: #f4f4f9;
           text-align: center;
           padding: 20px;
           box-sizing: border-box;
         }
-    
+        
         form, #result {
           background: #fff;
           padding: 20px;
           border-radius: 12px;
           box-shadow: 0 4px 10px rgba(0,0,0,0.1);
           width: 100%;
-          max-width: 500px; /* ให้ยืดได้สูงสุด แต่ไม่เกิน */
+          max-width: 500px; /* ไม่ให้ยืดเกิน */
           margin-bottom: 20px;
           box-sizing: border-box;
         }
-    
+        
         form label {
           font-weight: bold;
           font-size: 1rem;
         }
-    
+        
         input[type="file"] {
           width: 100%;
           margin: 10px 0;
         }
-    
+        
         button {
           width: 100%;
           padding: 10px 16px;
@@ -52,19 +52,30 @@
           cursor: pointer;
           transition: background 0.3s ease;
         }
-    
+        
         button:hover {
           background-color: #45a049;
         }
-    
+        
+        #result {
+          display: block;   /* ไม่ใช้ grid หรือ flex → บังคับเรียงแนวตั้ง */
+          text-align: center;
+        }
+        
+        #result .file-item {
+          margin-bottom: 20px;
+          padding-bottom: 15px;
+          border-bottom: 1px solid #ddd; /* เส้นคั่นระหว่างแต่ละไฟล์ */
+        }
+        
         #result img {
           width: 100%;
-          max-width: 150px;
-          max-height: 150px;
+          max-width: 200px;
+          height: auto;
           border-radius: 8px;
           margin: 10px 0;
         }
-    
+        
         a {
           text-decoration: none;
           color: #007BFF;
@@ -72,43 +83,17 @@
           display: inline-block;
           margin-top: 8px;
         }
-    
+        
         a:hover {
           text-decoration: underline;
         }
-    
-        /* Responsive layout */
-        @media (min-width: 768px) {
-          body {
-            padding: 40px;
-          }
-    
-          form, #result {
-            padding: 30px;
-          }
-    
-          button {
-            width: auto;
-            min-width: 120px;
-          }
-    
-          #result {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            text-align: left;
-          }
-    
-          #result img, #result a {
-            margin: 0 auto;
-          }
-        }
-    
+        
+        /* สำหรับจอเล็ก เช่น มือถือ */
         @media (max-width: 480px) {
           form, #result {
             padding: 15px;
           }
-    
+        
           button {
             font-size: 14px;
             padding: 8px;
