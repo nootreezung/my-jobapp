@@ -6,96 +6,113 @@
     <title>Upload Multiple Page</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column; /* จัดแนวบนลงล่าง */
-            justify-content: center; /* center แนวตั้ง */
-            align-items: center; /* center แนวนอน */
-            font-family: Arial, sans-serif;
-            background: #f4f4f9;
-            text-align: center;
-        }
-
-        form {
-            background: #fff;
-            padding: 20px 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            max-width: 90%;
-            width: 350px;
-        }
-
-        input[type="file"] {
-            width: 100%;
-        }
-
-        input[type="checkbox"] {
-            margin-right: 5px;
-        }
-
-        button {
-            padding: 8px 16px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #result {
-            margin-top: 20px;
-            background: #fff;
-            padding: 15px 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            max-width: 90%;
-            width: 350px;
-        }
-
-        #result img {
-            max-width: 100px;
-            max-height: 100px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-        }
-
-        a {
-            text-decoration: none;
-            color: #333;
-            margin-top: 10px;
-            display: inline-block;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .top-link {
-          color: #007BFF;
-          text-decoration: none;
-          font-weight: bold;
+          margin: 0;
+          padding: 0;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column; /* บนลงล่าง */
+          justify-content: flex-start; /* เริ่มต้นด้านบน */
+          align-items: center; /* center แนวนอน */
+          font-family: Arial, sans-serif;
+          background: #f4f4f9;
+          text-align: center;
+          padding: 20px;
+          box-sizing: border-box;
         }
     
-        .top-link:hover {
+        form, #result {
+          background: #fff;
+          padding: 20px;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          width: 100%;
+          max-width: 500px; /* ให้ยืดได้สูงสุด แต่ไม่เกิน */
+          margin-bottom: 20px;
+          box-sizing: border-box;
+        }
+    
+        form label {
+          font-weight: bold;
+          font-size: 1rem;
+        }
+    
+        input[type="file"] {
+          width: 100%;
+          margin: 10px 0;
+        }
+    
+        button {
+          width: 100%;
+          padding: 10px 16px;
+          font-size: 16px;
+          border: none;
+          border-radius: 8px;
+          background-color: #4CAF50;
+          color: white;
+          cursor: pointer;
+          transition: background 0.3s ease;
+        }
+    
+        button:hover {
+          background-color: #45a049;
+        }
+    
+        #result img {
+          width: 100%;
+          max-width: 150px;
+          max-height: 150px;
+          border-radius: 8px;
+          margin: 10px 0;
+        }
+    
+        a {
+          text-decoration: none;
+          color: #007BFF;
+          font-weight: bold;
+          display: inline-block;
+          margin-top: 8px;
+        }
+    
+        a:hover {
           text-decoration: underline;
         }
-
-        @media (max-width: 400px) {
-            form, #result {
-                width: 90%;
-                padding: 15px;
-            }
-
-            button {
-                width: 100%;
-            }
+    
+        /* Responsive layout */
+        @media (min-width: 768px) {
+          body {
+            padding: 40px;
+          }
+    
+          form, #result {
+            padding: 30px;
+          }
+    
+          button {
+            width: auto; /* บนจอใหญ่ปุ่มไม่จำเป็นต้องเต็ม */
+            min-width: 120px;
+          }
+    
+          #result {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: left;
+          }
+    
+          #result img, #result a {
+            margin: 0 auto;
+          }
+        }
+    
+        @media (max-width: 480px) {
+          form, #result {
+            padding: 15px;
+          }
+    
+          button {
+            font-size: 14px;
+            padding: 8px;
+          }
         }
     </style>
     <script>
