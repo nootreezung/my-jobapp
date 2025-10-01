@@ -338,16 +338,12 @@ app.all('/upload-multiple', (request, response) => {
         }
 
         let upfiles = files.upfiles
-        // เช็คว่ามีขนาดไฟล์ 0 bytes อัปโหลดเข้ามาหรือไม่
-        if (upfiles.length === 0 || !upfiles) {
+        if (!upfiles || upfiles.upfile.originalFilename === '' || upfile.size == 0) {
             response.render('upload-multiple')
             return
-        }
-        
-        // มี 2 กรณีที่จะไม่เป็นอาร์เรย์คือ 1. ไม่ได้เลือกไฟล์ใดๆ เลย 2. เลือกเพียง 1 ไฟล์
-        if (!Array.isArray(upfiles)) {
+        } else if (!Array.isArray(upfiles)) {
             upfiles = [upfiles]
-        }
+        } 
 
         const dir = 'public/upload/'
         let fileInfo = [] // ใช้เก็บข้อมูลของแต่ละไฟล์ เพื่อส่งไปยังเท็มเพลต
@@ -360,7 +356,7 @@ app.all('/upload-multiple', (request, response) => {
             let newPath = dir + newName
 
             // ถ้ามีไฟล์ชื่อซ้ำให้กำหนดชื่อไฟล์ใหม่ขึ้นมาแทนชื่อไฟล์เดิมที่มีการอัปโหลดเข้ามา
-            if (fileSystem.existsSync(newPath)) { // เช็คว่าไฟล์มีชื่อซ้ำกับที่บันทึกไว้ในโฟลเดอร์ upload หรือไม่
+            if (fileSystem.existsSync(newPath) && f.originalFilename != '') { // เช็คว่าไฟล์มีชื่อซ้ำกับที่บันทึกไว้ในโฟลเดอร์ upload หรือไม่
                 let nameParts = newName.split('.')
                 let pullExtensions = nameParts.pop() // แยกชื่อไฟล์กับนามสกุลของไฟล์ออกจากกัน
                 let mergeFileNames = nameParts.join('.')
