@@ -339,7 +339,7 @@ app.all('/upload-multiple', (request, response) => {
 
         let upfiles = files.upfiles
         // เช็คว่ามีขนาดไฟล์ 0 bytes อัปโหลดเข้ามาหรือไม่
-        if (upfiles.length == 0) {
+        if (upfiles.length === 0) {
             response.render('upload')
             return
         }
