@@ -339,21 +339,14 @@ app.all('/upload-multiple', (request, response) => {
 
         let upfiles = files.upfiles
         // เช็คว่ามีขนาดไฟล์ 0 bytes อัปโหลดเข้ามาหรือไม่
-        if (upfiles.length === 0) {
+        if (upfiles.length === 0 || !upfiles) {
             response.render('upload')
             return
         }
         
         // มี 2 กรณีที่จะไม่เป็นอาร์เรย์คือ 1. ไม่ได้เลือกไฟล์ใดๆ เลย 2. เลือกเพียง 1 ไฟล์
         if (!Array.isArray(upfiles)) {
-            if (!upfiles) {
-                response.render('upload-multiple')
-                return
-            } else {
-                // ถ้าอัปโหลดขึ้นมาแค่ 1 ไฟล์ ให้แปลงเป็นอาร์เรย์
-                // เพื่อใช้วิธีจัดการไฟล์แบบเดียวกันกับการอัปโหลดแบบหลายไฟล์
-                upfiles = [upfiles]
-            }
+            upfiles = [upfiles]
         }
 
         const dir = 'public/upload/'
