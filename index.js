@@ -334,7 +334,8 @@ app.all('/upload-multiple', (request, response) => {
     form.parse(request, async (err, fields, files) => {
         if (err) {
             console.log('Form parse error: ', err)
-            return response.status(500).send('Upload Error')
+            // return response.status(500).send('Upload Error')
+            return response.render('upload-multiple')
         }
 
         let upfiles = files.upfiles
