@@ -330,7 +330,7 @@ app.all('/upload-multiple', (request, response) => {
         response.render('upload-multiple')
         return
     }
-    let form = new formidable.IncomingForm({ multiples: true, keepExtensions: true, allowEmptyFiles: false, minFileSize: 1 })
+    let form = new formidable.IncomingForm({ multiples: true, keepExtensions: true, allowEmptyFiles: true, minFileSize: 1 }) // allowEmptyFiles: false
     form.parse(request, async (err, fields, files) => {
         if (err) {
             console.log('Form parse error: ', err)
@@ -339,13 +339,14 @@ app.all('/upload-multiple', (request, response) => {
         }
 
         let upfiles = files.upfiles
-        if (!upfiles || upfiles.originalFilename === '' || upfiles.size == 0) {
-            response.render('upload-multiple')
-            return
-        } else if (!Array.isArray(upfiles)) {
+        if (!upfiles) { // if (!upfiles || upfiles.originalFilename === '' || upfiles.size == 0) { ... }
+            return response.render('upload-multiple')
+        }
+        
+        if (!Array.isArray(upfiles)) {
             upfiles = [upfiles]
         } 
-
+        
         const dir = 'public/upload/'
         let fileInfo = [] // ใช้เก็บข้อมูลของแต่ละไฟล์ เพื่อส่งไปยังเท็มเพลต
         let fileNames = [] // เก็บชื่อของแต่ละไฟล์ เพื่อส่งไปยังเท็มเพลต
