@@ -340,10 +340,9 @@ app.all('/upload-multiple', (request, response) => {
 
         let upfiles = files.upfiles
         if (!upfiles) { // if (!upfiles || upfiles.originalFilename === '' || upfiles.size == 0) { ... }
-            return response.render('upload-multiple')
-        }
-        
-        if (!Array.isArray(upfiles)) {
+            response.render('upload-multiple')
+            return
+        } else if (!Array.isArray(upfiles)) {
             upfiles = [upfiles]
         } 
         
