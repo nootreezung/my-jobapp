@@ -330,7 +330,7 @@ app.all('/upload-multiple', (request, response) => {
         response.render('upload-multiple')
         return
     }
-    let form = new formidable.IncomingForm({ multiples: true, keepExtensions: true, allowEmptyFiles: true, minFileSize: 0 })
+    let form = new formidable.IncomingForm({ multiples: true, keepExtensions: true, allowEmptyFiles: false, minFileSize: 1 })
     form.parse(request, async (err, fields, files) => {
         if (err) {
             console.log('Form parse error: ', err)
@@ -351,6 +351,10 @@ app.all('/upload-multiple', (request, response) => {
         let filePaths = []
 
         for (f of upfiles) {
+            if (!f.originalFilename || f.size === 0) {
+                continue;
+            }
+            
             let oldPath = f.filepath // แทน f.path
             let newName = f.originalFilename // แทน f.name
             let newPath = dir + newName
@@ -383,6 +387,12 @@ app.all('/upload-multiple', (request, response) => {
             fileNames.push(newName)
             filePaths.push(newName) // สำหรับรูปภาพ
         }
+
+        // ถ้าไม่มีไฟล์อัปโหลดเข้ามา กรณีเลือกไฟล์เปล่า
+        if (fileInfo.length === 0) {
+            return response.render('upload-multiple')
+        }
+        
         response.render('upload-multiple', {
             fileInfo,
             fileNames,
