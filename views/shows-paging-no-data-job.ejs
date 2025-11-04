@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shows Paging No Data Job</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>  
         body {
           font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -179,7 +182,7 @@
     <!-- หน้า:&nbsp;&nbsp; -->
     <% if (locals.pageLink && pageLink) { %>
     <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#"><%- pageLink %></a></li>
+        <li class="page-item"><%- pageLink %></li>
     </ul>
     <% } %>
 </body>
