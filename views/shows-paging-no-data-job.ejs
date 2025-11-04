@@ -176,8 +176,11 @@
     </div>
     <% } %>
     <br><br>
+    <!-- หน้า:&nbsp;&nbsp; -->
     <% if (locals.pageLink && pageLink) { %>
-        หน้า:&nbsp;&nbsp;<%- pageLink %>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#"><%- pageLink %></a></li>
+    </ul>
     <% } %>
 </body>
 </html>
