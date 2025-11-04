@@ -250,7 +250,7 @@ app.get('/shows-paging-no-data-job', (request, response) => {
             if (i == result.page) {
                 links.push(i) // เพจปัจจุบันไม่ทำลิงก์
             } else {
-                links.push(`<a href="${request.path}?page=${i}">${i}</a>`)
+                links.push(`<a class="page-link" href="${request.path}?page=${i}">${i}</a>`)
             }
         }
         let pageLink = links.join(' - ')
