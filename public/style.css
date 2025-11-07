@@ -64,5 +64,6 @@ p {
 }
 
 a {
-    color: red;
+    color: white;
+    font-style: italic;
 }
