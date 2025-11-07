@@ -124,7 +124,7 @@
     <div class="alert alert-success alert-dismissible fade show">
         <h5 class="alert-heading">Success</h5>
         <div>
-            <br><br>ข้อมูลถูกบันทึกแล้ว
+            ข้อมูลถูกบันทึกแล้ว <!-- <br><br> -->
         </div>
         <button class="btn-close" data-bs-dismiss="alert"></button>
     </div>
@@ -132,44 +132,30 @@
     <div class="alert alert-danger alert-dismissible fade show">
         <h5 class="alert-heading">Fail</h5>
         <div>
-            <br><br>ข้อมูลไม่ถูกบันทึก เกิดข้อผิดพลาด  <!-- <span style="color: red;">ข้อมูลไม่ถูกบันทึก เกิดข้อผิดพลาด</span> -->
+            ข้อมูลไม่ถูกบันทึก เกิดข้อผิดพลาด  <!-- <span style="color: red;"><br>br>ข้อมูลไม่ถูกบันทึก เกิดข้อผิดพลาด</span> -->
         </div>
         <button class="btn-close" data-bs-dismiss="alert"></button>
     </div>
     <% } %>
     <!-- </div> -->
+    <div class="form-group">
     <form method="post" action="/adds-data-job">
         <a href="/index" class="top-link">หน้าแรก</a>
         <h4>เพิ่มข้อมูลรับสมัครงาน</h4>
-        
-        <div class="form-group">
         <label>ชื่อบริษัท</label>
         <input type="text" name="companyname" placeholder="ชื่อบริษัท" required><br><br>
-        </div>
-        <div class="form-group">
         <label>สถานที่ตั้งของบริษัท</label>
         <input type="text" name="location" placeholder="สถานที่ตั้งของบริษัท" required><br><br>
-        </div>
-        <div class="form-group">
         <label>เว็บไซต์ของบริษัท</label>
         <input type="text" name="websitecompany" placeholder="เว็บไซต์ของบริษัท" required><br><br>
-        </div>
-        <div class="form-group">
         <label>ตำแหน่งที่รับสมัคร</label>
         <input type="text" name="title" placeholder="ตำแหน่งที่รับสมัคร" required><br><br>
-        </div>
-        <div class="form-group">
         <label>รายละเอียดของการรับสมัคร</label>
         <textarea name="description" cols="60" rows="5" placeholder="รายละเอียดของการรับสมัคร"></textarea><br><br>
-        </div>
-        <div class="form-group">
         <label>เรตเงินเดือน</label>
         <input type="text" name="salary" placeholder="เรตเงินเดือน (กำหนดเป็นช่วงได้)" required><br><br>
-        </div>
-        <div class="form-group">
         <label>เบอร์ติดต่อ</label>
         <input type="text" name="telephonenumber" placeholder="เบอร์ติดต่อ" required><br><br>
-        </div>
         <%
             let dateTimeNow = new Date()
             let date = dateTimeNow.getDate()
@@ -179,11 +165,10 @@
             let year = dateTimeNow.getFullYear()
             let inputDate = `${year}-${month}-${date}`
         %>
-        <div class="form-group">
         <label>วันที่ลงประกาศ</label>
         <input type="date" name="date_added" value="<%= inputDate %>" placeholder="วันที่ลงประกาศ" required><br><br>
-        </div>
         <button type="submit">ส่งข้อมูล</button>
     </form>
+    </div>
 </body>
 </html>
