@@ -116,9 +116,9 @@
     </style>
 </head>
 <body>
+    <% if (locals.data) { %>
     <a href="/edits-and-deletes-data-job" class="top-link">ยกเลิก</a>
     <h4>แก้ไขข้อมูลรับสมัครงาน</h4>
-    <% if (locals.data) { %>
     <div class="form-group">
     <form method="post" action="/edits-job/<%= data._id %>">
         <label>ชื่อบริษัท</label>
